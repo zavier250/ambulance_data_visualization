@@ -1,0 +1,6 @@
+pandas
+flask
+numpy
+flask-sqlalchemy
+flask-migrate
+mysql-connector-python

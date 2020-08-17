@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - '3306:3306'
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_ROOT_PASSWORD: demo
+    volumes:
+      - ./mysql-data:/var/lib/mysql
