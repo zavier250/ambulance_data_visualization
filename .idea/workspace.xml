@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b5a68c9-23d0-42aa-ac8d-fffb6e72a7ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
@@ -16,16 +15,14 @@
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_7.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_7.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_8.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_8.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/user.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/user.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000002" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.000002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000003" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.000003" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.index" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibdata1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/sys/sys_config.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/sys/sys_config.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_002" afterDir="false" />
     </list>
@@ -40,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+            <state relative-caret-position="451">
+              <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
               <folding>
                 <element signature="e#17#65#0" expanded="true" />
               </folding>
@@ -50,9 +47,16 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-355" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state>
               <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
             </state>
           </provider>
@@ -61,7 +65,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1488">
+            <state>
               <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
               <folding>
                 <element signature="e#17#36#0" expanded="true" />
@@ -73,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state>
               <caret line="2" column="76" selection-start-line="2" selection-start-column="76" selection-end-line="2" selection-end-column="76" />
             </state>
           </provider>
@@ -103,8 +107,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="1440" />
+    <option name="width" value="2560" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -122,17 +127,6 @@
             <path>
               <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="docker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="docker" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql-data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -143,7 +137,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -199,23 +193,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="1440" y="0" width="2560" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13942496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.37951806" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7073651" visible="true" weight="0.37883213" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49964765" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8188865" weight="0.31325302" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986215" weight="0.21678832" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8181818" weight="0.31325302" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003524" side_tool="true" weight="0.37951806" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.2926349" side_tool="true" visible="true" weight="0.37883213" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -264,13 +258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="76" selection-start-line="2" selection-start-column="76" selection-end-line="2" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -280,14 +267,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
+        <state>
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1488">
+        <state>
           <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
           <folding>
             <element signature="e#17#36#0" expanded="true" />
@@ -295,10 +282,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="2" column="76" selection-start-line="2" selection-start-column="76" selection-end-line="2" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-355" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+        <state relative-caret-position="451">
+          <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
           <folding>
             <element signature="e#17#65#0" expanded="true" />
           </folding>

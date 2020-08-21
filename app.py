@@ -2,6 +2,9 @@
 from flask import Flask, request,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+# from sqlalchemy import Table
+# from sqlalchemy.ext.compiler import compiles
+# from sqlalchemy.sql.expression import Executable, ClauseElement
 import datetime
 import pandas as pd
 
@@ -13,6 +16,10 @@ RESPONSE_TIME_CLASS = {
     '20 min - 30 min':4,
     '30 min - 60 min':5,
     'Longer than 60 min':6
+}
+
+FINAL_ASS_CODE = {
+
 }
 
 app = Flask(__name__)
@@ -52,6 +59,10 @@ class earf(db.Model):
     Response_Time_Class = db.Column(db.Integer, index = True, unique = False, nullable = True)
     Case_Comments = db.Column(db.Text(), index = False, unique = False, nullable = True)
 
+class final_ass_count(db.Model):
+    Final_Assessment_Code = db.Column(db.String(100), primary_key = True)
+    Count = db.Column(db.Integer, index = True, unique = False, nullable = False)
+
 def upload_earf():
     df = pd.read_csv("./data/earf_cleaned2.csv", encoding="UTF-8")
     df = df.astype(object).where(pd.notnull(df), None)
@@ -59,10 +70,12 @@ def upload_earf():
     for record in df:
         if record[19]!=None and record[20]!=None and str(record[21]).find('day')==-1:
             # 1 for Male and 2 for Female
-            if record[15]=='MALE':
-                record[15]=1
-            else:
-                record[15]=2
+            if record[18]=='MALE':
+                record[18]=1
+            elif record[18]=='FEMALE':
+                record[18]=2
+            elif record[18]=='INDETERMNT':
+                record[18]=3
             rtl = record[21].split(':')
             response_time = int(rtl[0])*60 + int(rtl[1])
             db.session.add(earf(EARF_Number = record[0],
@@ -79,7 +92,7 @@ def upload_earf():
                                     Final_Assessment_Code = record[15],
                                     Final_Assessment = record[16],
                                     Patient_Ages = record[17],
-                                    Patient_Gender = record[15],
+                                    Patient_Gender = record[18],
                                     Time_Received = datetime.datetime.strptime(record[19], '%d/%m/%Y %H:%M'),
                                     Time_On_Scene = datetime.datetime.strptime(record[20], '%d/%m/%Y %H:%M'),
                                     Response_Time = response_time,
@@ -88,6 +101,8 @@ def upload_earf():
                                     ))
     db.session.commit()
     print('earf uploaded')
+
+
 
 
 @app.route('/')
@@ -107,6 +122,11 @@ def home():
     print(type(users))
     print(users)
     return render_template('index.html',users = users)
+
+@app.route('/dashboard')
+def dashboard():
+    whole_final2 = final_ass_count.query.all()
+    # print(whole_final2)
 
 if __name__ == '__main__':
     # upload_earf()
