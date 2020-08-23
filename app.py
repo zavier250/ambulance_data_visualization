@@ -1,5 +1,5 @@
 # Author: Zavier
-from flask import Flask, request,render_template
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 # from sqlalchemy import Table
@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 # from sqlalchemy.sql.expression import Executable, ClauseElement
 import datetime
 import pandas as pd
-
+from sqlalchemy import func
 
 RESPONSE_TIME_CLASS = {
     'Less than 7 min':1,
@@ -17,6 +17,16 @@ RESPONSE_TIME_CLASS = {
     '30 min - 60 min':5,
     'Longer than 60 min':6
 }
+
+RESPONSE_TIME_CLASS_2 = {
+    1:'Less than 7 min',
+    2:'7 min - 10 min',
+    3:'10 min - 20 min',
+    4:'20 min - 30 min',
+    5:'30 min - 60 min',
+    6:'Longer than 60 min'
+}
+
 
 FINAL_ASS_CODE = {
 
@@ -61,7 +71,18 @@ class earf(db.Model):
 
 class final_ass_count(db.Model):
     Final_Assessment_Code = db.Column(db.String(100), primary_key = True)
+    Final_Assessment = db.Column(db.String(300), index=True, unique=False, nullable=True)
     Count = db.Column(db.Integer, index = True, unique = False, nullable = False)
+
+class response_time_count(db.Model):
+    Response_Time_Class = Response_Time_Class = db.Column(db.Integer, primary_key = True)
+    Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
+
+class overtime_fa_count(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Final_Assessment_Code = db.Column(db.String(100), index=True, unique=False, nullable=True)
+    Response_Time_Class = db.Column(db.Integer, index=True, unique=False, nullable=True)
+    Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
 
 def upload_earf():
     df = pd.read_csv("./data/earf_cleaned2.csv", encoding="UTF-8")
@@ -126,7 +147,32 @@ def home():
 @app.route('/dashboard')
 def dashboard():
     whole_final2 = final_ass_count.query.all()
+    response_count = response_time_count.query.all()
+    # response_finalass_count = overtime_fa_count.query.all()
+    overtime_fa_count_dir = {}
+    top_6_code = db.session.query(final_ass_count.Final_Assessment_Code).limit(6).all()
+    # print(top_6_code)
+    for i in top_6_code:
+        code = i.Final_Assessment_Code
+        # print(code)
+        dir = {}
+        for r_class in [3,4,5,6]:
+            count = db.session.query(func.count(earf.EARF_Number)).filter(earf.Final_Assessment_Code==code, earf.Response_Time_Class==r_class).scalar()
+            # print(count)
+            dir[r_class]=count
+        overtime_fa_count_dir[code]=dir
+
+    # print(type(response_finalass_count))
     # print(whole_final2)
+    data_dic = {}
+    data_dic['whole_final'] = whole_final2
+    data_dic['response_count'] = response_count
+    data_dic['response_class'] = RESPONSE_TIME_CLASS_2
+    data_dic['top_6_code'] = top_6_code
+    data_dic['response_finalass_count'] = overtime_fa_count_dir
+    # data_dic['response_finalass_count'] = response_finalass_count
+
+    return render_template('dashboard2.html', data=data_dic)
 
 if __name__ == '__main__':
     # upload_earf()
