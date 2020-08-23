@@ -84,6 +84,8 @@ class overtime_fa_count(db.Model):
     Response_Time_Class = db.Column(db.Integer, index=True, unique=False, nullable=True)
     Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
 
+
+
 def upload_earf():
     df = pd.read_csv("./data/earf_cleaned2.csv", encoding="UTF-8")
     df = df.astype(object).where(pd.notnull(df), None)
@@ -161,6 +163,8 @@ def dashboard():
             # print(count)
             dir[r_class]=count
         overtime_fa_count_dir[code]=dir
+    addr_list = db.session.query(earf.Lat, earf.Lon).filter(earf.Response_Time_Class!=1, earf.Response_Time_Class!=2).all()
+    # print(addr_list)
 
     # print(type(response_finalass_count))
     # print(whole_final2)
@@ -170,6 +174,7 @@ def dashboard():
     data_dic['response_class'] = RESPONSE_TIME_CLASS_2
     data_dic['top_6_code'] = top_6_code
     data_dic['response_finalass_count'] = overtime_fa_count_dir
+    data_dic['addr_list'] = addr_list
     # data_dic['response_finalass_count'] = response_finalass_count
 
     return render_template('dashboard2.html', data=data_dic)
