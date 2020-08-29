@@ -5,25 +5,26 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
+import pandas as pd
 
-from app import *
-
-def barchart():
-    track_response = db.session.query(earf.EARF_Number,earf.Response_Time).filter(earf.Road_Class=='highway',
-                                                                                        earf.Road_Type=='track').all()
-
-    ls = []
-    intime_count = 0
-    for i in track_response:
-        if i.Response_Time<=60:
-            if i.Response_Time<=10:
-                intime_count+=1
-            ls.append(i.Response_Time)
-    # plt.hist(x=result_array[0],bins=len(track_response))
-    # plt.show()
-    print(intime_count)
-    plt.bar(range(len(ls)),ls)
-    plt.show()
+# from app import *
+#
+# def barchart():
+#     track_response = db.session.query(earf.EARF_Number,earf.Response_Time).filter(earf.Road_Class=='highway',
+#                                                                                         earf.Road_Type=='track').all()
+#
+#     ls = []
+#     intime_count = 0
+#     for i in track_response:
+#         if i.Response_Time<=60:
+#             if i.Response_Time<=10:
+#                 intime_count+=1
+#             ls.append(i.Response_Time)
+#     # plt.hist(x=result_array[0],bins=len(track_response))
+#     # plt.show()
+#     print(intime_count)
+#     plt.bar(range(len(ls)),ls)
+#     plt.show()
 
 
 def get_ambulance_station():
