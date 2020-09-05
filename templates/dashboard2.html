@@ -316,6 +316,11 @@
 
       #mapid2 { height: 500px; }
 
+      #g-map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -552,6 +557,22 @@
 
           </div>
 
+          <div class="row mt-4 mb-5">
+              <div class="col-md-12">
+
+                  <div class="card">
+                      <div class="card-header">
+                          <h4>Ambulance Station Deployment and Overtime Response Cases Assignment<br>based on K-means clustering algorithm</h4>
+                      </div>
+                      <div class="card-body">
+                          <div id="g-map"></div>
+                      </div>
+                      <div class="card-footer"></div>
+                    </div>
+              </div>
+
+          </div>
+
          </div>
 
     </main>
@@ -562,6 +583,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.4/examples/dashboard/dashboard.js"></script>
+        <script>
+            function initMap() {
+              // The location of Uluru
+              var uluru = {lat: -25.344, lng: 131.036};
+              // The map, centered at Uluru
+              var map = new google.maps.Map(
+                  document.getElementById('g-map'), {zoom: 4, center: uluru});
+              // The marker, positioned at Uluru
+              var marker = new google.maps.Marker({position: uluru, map: map});
+            }
+        </script>
+        <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpf-U3kydWGURsa81v2Bo7CGeLqOVguAI&callback=initMap" type="text/javascript"></script>
         <script>
 
 
@@ -648,6 +681,8 @@
             marker.bindPopup("{{coordinate.Count}}").openPopup();
         {%endif%}
         {%endfor%}
+
+
 
 
 

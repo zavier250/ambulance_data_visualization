@@ -8,6 +8,8 @@ from flask_migrate import Migrate
 import datetime
 import pandas as pd
 from sqlalchemy import func
+from analysis import *
+from sqlalchemy import and_,or_
 
 RESPONSE_TIME_CLASS = {
     'Less than 7 min':1,
@@ -84,7 +86,19 @@ class overtime_fa_count(db.Model):
     Response_Time_Class = db.Column(db.Integer, index=True, unique=False, nullable=True)
     Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
 
+class ambulance_station(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Location_id = db.Column(db.String(500),index=True, unique=True, nullable=True)
+    Station_Name = db.Column(db.String(300),index=True, unique=False, nullable=True)
+    Status = db.Column(db.String(100),index=True, unique=False, nullable=True)
+    Lat = db.Column(db.Float, index=True, unique=False, nullable=True)
+    Lon = db.Column(db.Float, index=True, unique=False, nullable=True)
 
+class daily_case_count(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Date = db.Column(db.DateTime, index = True, unique = False, nullable = True)
+    Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
+    Overtime_Count = db.Column(db.Integer, index=True, unique=False, nullable=True)
 
 def upload_earf():
     df = pd.read_csv("./data/earf_cleaned2.csv", encoding="UTF-8")
@@ -125,6 +139,32 @@ def upload_earf():
     db.session.commit()
     print('earf uploaded')
 
+def upload_ambulance_station():
+    df = pd.read_csv("./data/ambulance_station.csv", encoding="UTF-8")
+    df = df.values.tolist()
+    for record in df:
+        db.session.add(ambulance_station(Location_id=record[1],
+                                         Station_Name=record[2],
+                                         Status=record[3],
+                                         Lat=record[4],
+                                         Lon=record[5]
+                                         ))
+    db.session.commit()
+    print('ambulance_station_uploaded.')
+
+
+def upload_daily_case_count():
+    for year in [2015,2016,2017,2018]:
+        year_li = get_daily_cases(year)
+        print(len(year_li))
+        for day in year_li:
+            count = db.session.query(func.count(earf.EARF_Number)).filter(earf.EARF_Date==day).scalar()
+            overtime_count = db.session.query(func.count(earf.EARF_Number)).filter(and_(earf.EARF_Date==day, earf.Response_Time_Class!=1, earf.EARF_Number!=2)).scalar()
+            db.session.add(daily_case_count(Date=day,
+                                            Count=count,
+                                            Overtime_Count=overtime_count))
+    db.session.commit()
+    print('daily case count uploaded')
 
 
 
@@ -179,8 +219,46 @@ def dashboard():
 
     return render_template('dashboard2.html', data=data_dic)
 
+@app.route('/g-map')
+def g_map():
+    ambulance_station_loc = ambulance_station.query.all()
+    data_dic={}
+    data_dic['ambulance_station']=ambulance_station_loc
+    return render_template('g-map.html',data=data_dic)
+
+@app.route('/cluster-map')
+def cluster_map():
+    addr_list = db.session.query(earf.Lat, earf.Lon).filter(earf.Response_Time_Class != 1,
+                                                            earf.Response_Time_Class != 2).all()
+    data_dic={}
+    data_dic['addr_list'] = addr_list
+    return render_template('cluster-map.html',data=data_dic)
+
+@app.route('/daily-case-map/<date>')
+def daily_case_map(date):
+    daily_case = db.session.query(earf.Lat,earf.Lon).filter(earf.EARF_Date==(str(date)+' 00:00:00')).all()
+    track_case = db.session.query(earf.Lat,earf.Lon).filter(earf.Road_Type=='track').all()
+    data_dic = {}
+    data_dic['daily_case'] = daily_case
+    data_dic['track_case'] = track_case
+    return render_template('daily-case-map.html',data=data_dic)
+
+@app.route('/road-type-map/<type>')
+def road_type_map(type):
+    type_case = db.session.query(earf.Lat, earf.Lon).filter(earf.Road_Type == type).all()
+    ambulance_station_loc = ambulance_station.query.all()
+    data_dic = {}
+    data_dic['type_case'] = type_case
+    data_dic['ambulance_station'] = ambulance_station_loc
+    return render_template('road-type-map.html', data=data_dic)
+
 if __name__ == '__main__':
-    # upload_earf()
+    # Data upload
+        # upload_earf()
+        # upload_ambulance_station()
+    # upload_daily_case_count()
+
+    #App run
     app.run(debug=True)
 
     # flask db init
