@@ -314,11 +314,37 @@ def load_darf(filename):
     df2.to_csv('./data/darf_cleaned.csv')
 
 
+def earf_ampds_code():
+    df = pd.read_csv('./data/earf.csv', encoding="UTF-8")
+    columns = ["AMPDS Code","Protocol","Priority","Sub_Category","EARF Number"]
+    df2 = pd.DataFrame(columns=columns)
+    for i in range(df.shape[0]):
+        if df['AMPDS Code'][i]:
+            print(df['EARF Number'][i])
+            AMPDS_Code = df['AMPDS Code'][i]
+            protocol = int(AMPDS_Code[:2])
+            priority = AMPDS_Code[2:3]
+            sub_category = AMPDS_Code[3:]
+            df2 = df2.append(
+                pd.DataFrame({
+                    "AMPDS Code": [AMPDS_Code],
+                    "Protocol": [protocol],
+                    "Priority": [priority],
+                    "Sub_Category": [sub_category],
+                    "EARF Number": [df['EARF Number'][i]]
+                }), ignore_index=True
+            )
+    df2.to_csv('./data/earf_ampds.csv')
+    print('AMPDS processed.')
+
+
+
 
 def main():
     # load_earf("./data/earf.csv")
-    response_time_calculate("./data/darf_cleaned.csv")
+    # response_time_calculate("./data/darf_cleaned.csv")
     # load_darf("./data/darf.csv")
+    earf_ampds_code()
 
 
 if __name__ == "__main__":

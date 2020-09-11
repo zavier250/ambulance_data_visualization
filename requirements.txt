@@ -6,3 +6,4 @@ flask-migrate
 mysql-connector-python
 matplotlib
 sklearn
+statsmodels

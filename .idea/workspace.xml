@@ -2,27 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b5a68c9-23d0-42aa-ac8d-fffb6e72a7ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/cluster-map.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/daily-case-map.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/g-map.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/road-type-map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_filter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_1.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_1.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_10.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_10.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_2.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_2.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_3.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_3.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_4.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_4.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_5.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_5.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_6.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_6.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_7.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_7.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_8.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_8.ibt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/overtime_fa_count_pre.ibd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/top_6_fa.ibd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000018" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.000018" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.index" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_002" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="159" column="27" lean-forward="true" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
+            <state relative-caret-position="264">
+              <caret line="187" column="62" selection-start-line="187" selection-start-column="62" selection-end-line="187" selection-end-column="62" />
               <folding>
                 <element signature="e#17#66#0" expanded="true" />
               </folding>
@@ -47,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/road-type-map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
+            <state relative-caret-position="595">
               <caret line="35" column="141" selection-start-line="35" selection-start-column="141" selection-end-line="35" selection-end-column="141" />
             </state>
           </provider>
@@ -70,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+            <state relative-caret-position="136">
+              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -79,10 +86,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="3689">
+              <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+              <folding>
+                <element signature="e#17#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="336" column="7" selection-start-line="336" selection-start-column="7" selection-end-line="336" selection-end-column="7" />
+              <folding>
+                <element signature="e#17#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/earf_ampds.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -110,17 +137,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/data_filter.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/docker/docker-compose.yml" />
         <option value="$PROJECT_DIR$/templates/dashboard2.html" />
         <option value="$PROJECT_DIR$/templates/cluster-map.html" />
         <option value="$PROJECT_DIR$/templates/g-map.html" />
         <option value="$PROJECT_DIR$/templates/daily-case-map.html" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/road-type-map.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/analysis.py" />
+        <option value="$PROJECT_DIR$/data_filter.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -134,6 +161,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,6 +173,11 @@
               <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="jupyter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
@@ -166,12 +199,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jupyter" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -228,9 +265,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="data_filter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ambulance_data_dashboard" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_filter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.data_filter" />
         <item itemvalue="Python.analysis" />
       </list>
     </recent_temporary>
@@ -250,21 +309,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16490486" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6948555" visible="true" weight="0.26506025" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4989429" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6906272" visible="true" weight="0.34457833" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4982382" weight="0.25301206" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8083157" weight="0.13253012" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8062016" weight="0.41807228" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.30514446" side_tool="true" visible="true" weight="0.26506025" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3093728" side_tool="true" visible="true" weight="0.34457833" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -335,16 +395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="317" column="11" lean-forward="true" selection-start-line="317" selection-start-column="11" selection-end-line="317" selection-end-column="11" />
-          <folding>
-            <element signature="e#17#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2353">
@@ -370,6 +420,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/road-type-map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="141" selection-start-line="35" selection-start-column="141" selection-end-line="35" selection-end-column="141" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/ambulance_station.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -380,6 +437,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3689">
+          <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+          <folding>
+            <element signature="e#17#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/daily-case-map.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -387,31 +461,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/data/earf.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        <state relative-caret-position="389">
+          <caret line="336" column="7" selection-start-line="336" selection-start-column="7" selection-end-line="336" selection-end-column="7" />
+          <folding>
+            <element signature="e#17#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/road-type-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="35" column="141" selection-start-line="35" selection-start-column="141" selection-end-line="35" selection-end-column="141" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/data/earf_ampds.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="LargeFileEditor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="159" column="27" lean-forward="true" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
+        <state relative-caret-position="264">
+          <caret line="187" column="62" selection-start-line="187" selection-start-column="62" selection-end-line="187" selection-end-column="62" />
           <folding>
             <element signature="e#17#66#0" expanded="true" />
           </folding>

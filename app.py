@@ -50,6 +50,10 @@ class User(db.Model):
 class earf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     EARF_Number = db.Column(db.Integer, index=True, unique=False, nullable=False)
+    AMPDS_Code = db.Column(db.String(100), index = True, unique = False, nullable = True)
+    Protocol = db.Column(db.Integer, index=True, unique=False, nullable=False)
+    Priority = db.Column(db.String(100), index = True, unique = False, nullable = True)
+    Sub_Category = db.Column(db.String(100), index = True, unique = False, nullable = True)
     EARF_Date = db.Column(db.DateTime, index = True, unique = False, nullable = True)
     Case_Nature_Code = db.Column(db.String(100), index = True, unique = False, nullable = True)
     Case_Nature = db.Column(db.String(300), index = True, unique = False, nullable = True)
@@ -99,6 +103,15 @@ class daily_case_count(db.Model):
     Date = db.Column(db.DateTime, index = True, unique = False, nullable = True)
     Count = db.Column(db.Integer, index=True, unique=False, nullable=False)
     Overtime_Count = db.Column(db.Integer, index=True, unique=False, nullable=True)
+
+class ampds(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    EARF_Number = db.Column(db.Integer, index=True, unique=False, nullable=False)
+    AMPDS_Code = db.Column(db.String(100), index=True, unique=False, nullable=True)
+    Protocol = db.Column(db.Integer, index=True, unique=False, nullable=False)
+    Priority = db.Column(db.String(100), index=True, unique=False, nullable=True)
+    Sub_Category = db.Column(db.String(100), index=True, unique=False, nullable=True)
+
 
 def upload_earf():
     df = pd.read_csv("./data/earf_cleaned2.csv", encoding="UTF-8")
@@ -167,6 +180,17 @@ def upload_daily_case_count():
     print('daily case count uploaded')
 
 
+def upload_ampds():
+    df = pd.read_csv('./data/earf_ampds.csv', encoding="UTF-8")
+    for i in range(df.shape[0]):
+        db.session.add(ampds(EARF_Number = int(df['EARF Number'][i]),
+                             AMPDS_Code = df['AMPDS Code'][i],
+                             Protocol = int(df['Protocol'][i]),
+                             Priority = df['Priority'][i],
+                             Sub_Category = df['Sub_Category'][i]
+                             ))
+    db.session.commit()
+    print('Ampds uploaded.')
 
 @app.route('/')
 def helloworld():
@@ -257,6 +281,7 @@ if __name__ == '__main__':
         # upload_earf()
         # upload_ambulance_station()
     # upload_daily_case_count()
+    # upload_ampds()
 
     #App run
     app.run(debug=True)

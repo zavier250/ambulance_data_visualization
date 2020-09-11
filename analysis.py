@@ -5,13 +5,15 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
-# import pandas as pd
+import pandas as pd
 import calendar
 import datetime
 
 from app import *
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression,Ridge,RidgeCV
 from sklearn.preprocessing import PolynomialFeatures
+from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.graphics.tsaplots import plot_acf,plot_pacf
 
 def barchart():
     track_response = db.session.query(earf.EARF_Number,earf.Response_Time).filter(earf.Road_Class=='highway',
@@ -50,6 +52,60 @@ def over_rate_regression():
     daily_count = db.session.query(daily_case_count.Date, daily_case_count.Count,
                                    daily_case_count.Overtime_Count).filter(
         and_(daily_case_count.Date > '2015-12-31', daily_case_count.Date < '2017-01-01')).all()
+
+    test_daily_count = db.session.query(daily_case_count.Date, daily_case_count.Count,
+                                   daily_case_count.Overtime_Count).filter(
+        and_(daily_case_count.Date > '2017-01-01', daily_case_count.Date < '2017-05-31')).all()
+    date = []
+    ls = []
+    over_ls = []
+    over_rate = []
+    test_ls = []
+    test_over_rate = []
+    for pair in daily_count:
+        date.append([pair.Date])
+        ls.append([pair.Count])
+        over_ls.append([pair.Overtime_Count])
+        over_rate.append([pair.Overtime_Count / pair.Count])
+
+    for pair in test_daily_count:
+        test_ls.append([pair.Count])
+        test_over_rate.append([pair.Overtime_Count / pair.Count])
+    # ls = [ls]
+    # over_rate = [over_rate]
+    # ls = [[1],[2],[3],[4],[5]]
+    # over_rate = [[1],[4],[9],[16],[25]]
+    poly = PolynomialFeatures(degree=4)
+    X_poly = poly.fit_transform(ls)
+
+    poly.fit(X_poly, over_rate)
+    lin2 = LinearRegression()
+    lin2.fit(X_poly, over_rate)
+
+    # # Ridge
+    # model = RidgeCV(alphas=[0.1, 1.0, 10.0])
+    # model.fit(ls,over_rate)
+
+    # # Ridge predict
+    # overtime_predicted = model.predict(test_ls)
+    # plt.scatter(ls, over_rate, marker='o', color='green', label='Training data')
+    # plt.scatter(test_ls, overtime_predicted, marker='*', color='blue', label='Test data')
+    # plt.scatter(test_ls, test_over_rate, color = "orange", label = "2017")
+    # plt.plot(test_ls, overtime_predicted, c='r')
+
+    print(lin2.predict(poly.fit_transform([[78]])))
+
+    plt.scatter(ls, over_rate, color='blue')
+
+    plt.plot(ls, lin2.predict(poly.fit_transform(ls)), color='red')
+    plt.title('Polynomial Regression')
+
+    plt.show()
+
+def arima():
+    daily_count = db.session.query(daily_case_count.Date, daily_case_count.Count,
+                                   daily_case_count.Overtime_Count).filter(
+        and_(daily_case_count.Date > '2015-12-31', daily_case_count.Date < '2017-01-01')).all()
     date = []
     ls = []
     over_ls = []
@@ -58,23 +114,41 @@ def over_rate_regression():
         date.append(pair.Date)
         ls.append(pair.Count)
         over_ls.append(pair.Overtime_Count)
-        over_rate.append((pair.Count - pair.Overtime_Count) / pair.Count)
+        over_rate.append(pair.Overtime_Count / pair.Count)
 
-    ls = [ls]
-    over_rate = [over_rate]
-    poly = PolynomialFeatures(degree=4)
-    X_poly = poly.fit_transform(ls)
-
-    poly.fit(X_poly, over_rate)
-    lin2 = LinearRegression()
-    lin2.fit(X_poly, over_rate)
-
-    plt.scatter(ls, over_rate, color='blue')
-
-    plt.plot(ls, lin2.predict(poly.fit_transform(ls)), color='red')
-    plt.title('Polynomial Regression')
-
-    plt.show()
+    df = pd.DataFrame(columns=['Date','Over_rate'])
+    for i in range(len(date)):
+        df = df.append(
+            pd.DataFrame({
+                'Date':[date[i]],
+                'Over_rate':[over_rate[i]]
+            }),ignore_index=True
+        )
+    df.to_csv('./data/arima-data.csv')
+    # print(df)
+    # over_rate = df.diff(1)
+    # over_rate = over_rate.dropna()
+    # print(over_rate)
+    # # plt.plot(date,df,color='red')
+    # # plt.plot(date,over_rate)
+    # # plt.show()
+    #
+    # # acf = plot_acf(over_rate,lags=20)
+    # # plt.title('acf')
+    # # plt.show()
+    # # q=1
+    #
+    # # pacf = plot_pacf(over_rate, lags=20)
+    # # plt.title('pacf')
+    # # plt.show()
+    # # p=7
+    #
+    # model = ARIMA(over_rate,order=(7,1,1),freq=1)
+    # result = model.fit()
+    #
+    # # predict
+    # pred = result.predict('2016-12-15','2017-02-01',dynamic=True)
+    # print(pred)
 
 
 # certain_area_filter
@@ -176,7 +250,8 @@ def main():
     # print(len(get_daily_cases(2015)))
 
     # daily_count_distribution()
-    over_rate_regression()
+    # over_rate_regression()
+    arima()
 
 if __name__ == '__main__':
     main()
