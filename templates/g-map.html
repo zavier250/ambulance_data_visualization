@@ -1,42 +1,576 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Queensland traffic accident related ambulance dispatching report -- Ambulance station deployment</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Required meta tags -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+
+    </script>
     <style>
        /* Set the size of the div element that contains the map */
       #map {
-        height: 800px;  /* The height is 400 pixels */
+        height: 60vh;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
+
+       #map-kmeans {
+        height: 60vh;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+
+       #map-dbscan {
+        height: 60vh;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+
+       #banner{
+        margin-bottom:0;
+        background: url('https://w.wallhaven.cc/full/3k/wallhaven-3kokg3.jpg');
+        background-position-y: -160px;
+        background-size: cover;
+      }
+
+      #banner .container{
+        background-color:rgba(94,97,100,0.8);
+      }
+
+      #banner h1{
+        color:aliceblue;
+        text-align:center;
+      }
+
+      #banner h4{
+        color:aliceblue;
+        text-align:center;
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      #fa-table{
+        display:block;
+        height:400px;
+        width:100%;
+        overflow-y:scroll;
+      }
+
+
+      #mapid { height: 500px; }
+
+      #mapid2 { height: 500px; }
+
+      #g-map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
     </style>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+        <div class="jumbotron jumbotron-fluid" id="banner">
+          <div class="container">
+            <h1>Queensland traffic accident related<br>ambulance dispatching report</h1>
+            <h4>2015 - 2018</h4>
+          </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark flex-md-nowrap py-4 shadow">
+          <!--<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>-->
+          <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+          <!--<ul class="navbar-nav px-3">-->
+            <!--<li class="nav-item text-nowrap">-->
+              <!--<a class="nav-link" href="#">Sign out</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+            <ul>
+                <li>
+                    <a href="{{url_for('dashboard')}}">General</a>
+                </li>
+                <li>
+                    <a href="{{url_for('priority_analysis')}}">Case Priority</a>
+                </li>
+                <li>
+                    <a href="{{url_for('g_map')}}">Ambulance Station Deployment</a>
+                </li>
+                <li>
+                    <a href="{{url_for('home')}}">Data Import</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                      <div class="card-header">
+                          <h4>Distribution of traffic accident final assessment</h4>
+                      </div>
+                      <div class="card-body">
+                          <div id="response_time_pie" style="height: 300px; width: 100%;"></div>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                    <div class="card">
+                      <div class="card-header">
+                          <h4>Current ambulance station deployment in QLD (207 stations)</h4>
+                      </div>
+                      <div class="card-body">
+                        <div id="floating-panel">
+                            <button onclick="visualize(heatmap_class_1)">{{data['response_time_class'][1]}}</button>
+                            <button onclick="visualize(heatmap_class_2)">{{data['response_time_class'][2]}}</button>
+                            <button onclick="visualize(heatmap_class_3)">{{data['response_time_class'][3]}}</button>
+                            <button onclick="visualize(heatmap_class_4)">{{data['response_time_class'][4]}}</button>
+                            <button onclick="visualize(heatmap_class_5)">{{data['response_time_class'][5]}}</button>
+                            <button onclick="visualize(heatmap_class_6)">{{data['response_time_class'][6]}}</button>
+                            <button onclick="hide_all()">Hide All</button>
+                        </div>
+                        <div id="map"></div>
+                      </div>
+                    </div>
+            </div>
+          </div>
+          <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-header">
+                          <h4>Ambulance station deployment by K-Means clustering (K=220)</h4>
+                      </div>
+                      <div class="card-body">
+                        <div id="floating-panel-2">
+                            <button onclick="visualize_kmeans(heatmap_class_1_kmeans)">{{data['response_time_class'][1]}}</button>
+                            <button onclick="visualize_kmeans(heatmap_class_2_kmeans)">{{data['response_time_class'][2]}}</button>
+                            <button onclick="visualize_kmeans(heatmap_class_3_kmeans)">{{data['response_time_class'][3]}}</button>
+                            <button onclick="visualize_kmeans(heatmap_class_4_kmeans)">{{data['response_time_class'][4]}}</button>
+                            <button onclick="visualize_kmeans(heatmap_class_5_kmeans)">{{data['response_time_class'][5]}}</button>
+                            <button onclick="visualize_kmeans(heatmap_class_6_kmeans)">{{data['response_time_class'][6]}}</button>
+                            <button onclick="hide_all_kmeans()">Hide All</button>
+                        </div>
+                        <div id="map-kmeans"></div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-header">
+                          <h4>Current ambulance station deployment by DB Scan (Eps=0.1, MinPts=40)</h4>
+                      </div>
+                      <div class="card-body">
+                        <div id="floating-panel-3">
+                            <button onclick="visualize_dbscan(heatmap_class_1_dbscan)">{{data['response_time_class'][1]}}</button>
+                            <button onclick="visualize_dbscan(heatmap_class_2_dbscan)">{{data['response_time_class'][2]}}</button>
+                            <button onclick="visualize_dbscan(heatmap_class_3_dbscan)">{{data['response_time_class'][3]}}</button>
+                            <button onclick="visualize_dbscan(heatmap_class_4_dbscan)">{{data['response_time_class'][4]}}</button>
+                            <button onclick="visualize_dbscan(heatmap_class_5_dbscan)">{{data['response_time_class'][5]}}</button>
+                            <button onclick="visualize_dbscan(heatmap_class_6_dbscan)">{{data['response_time_class'][6]}}</button>
+                            <button onclick="visualize_dbscan(outlier_layer)">Outliers</button>
+                            <button onclick="hide_all_dbscan()">Hide All</button>
+                        </div>
+                        <div id="map-dbscan"></div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+        </div>
     <!--The div element for the map -->
-    <div id="map"></div>
-    <script>
+       <script>
         // Initialize and add the map
+
+        gradient = [
+          "rgba(0, 0, 255, 0)",
+          "rgba(0, 255, 255, 1)",
+          "rgba(0, 191, 255, 1)",
+          "rgba(0, 127, 255, 1)",
+          "rgba(0, 63, 255, 1)",
+          "rgba(0, 255, 255, 1)",
+          "rgba(0, 0, 223, 1)",
+          "rgba(0, 0, 191, 1)",
+          "rgba(0, 0, 159, 1)",
+          "rgba(0, 0, 127, 1)",
+          "rgba(63, 0, 91, 1)",
+          "rgba(127, 0, 63, 1)",
+          "rgba(191, 0, 31, 1)",
+          "rgba(255, 0, 0, 1)",
+        ];
         function initMap() {
 
           // The map, centered at Brisbane (-27.470125, 153.021072)
           var brisbane = {lat:-27.470125, lng:153.021072};
           var map = new google.maps.Map(
               document.getElementById('map'), {zoom: 5, center: brisbane});
+
+          var map_kmeans = new google.maps.Map(
+              document.getElementById('map-kmeans'), {zoom: 5, center: brisbane});
+
+          var map_dbscan = new google.maps.Map(
+              document.getElementById('map-dbscan'), {zoom: 5, center: brisbane});
           // The location of ambulance stations
           {%for station in data['ambulance_station']:%}
-            var loc = {lat:{{station.Lat}},lng:{{station.Lon}}}
-          <!--var uluru = {lat: -25.344, lng: 131.036};-->
-          <!--// The marker, positioned at Uluru-->
-            var marker = new google.maps.Marker({position: loc, map: map});
+            <!--var loc = {lat:{{station.Lat}},lng:{{station.Lon}}}-->
+            <!--var marker = new google.maps.Marker({position: loc, map: map});-->
+
+            service_area = new google.maps.Circle({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 0,
+              fillColor: "#FF00FF",
+              fillOpacity: 1,
+              map:map,
+              center: {lat:{{station.Lat}},lng:{{station.Lon}}},
+              radius: 10000,
+            });
           {%endfor%}
+
+          {%for station in data['k-means-result']:%}
+            <!--console.log({{station.Lat}})-->
+
+            service_area2 = new google.maps.Circle({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 0,
+              fillColor: "#FF8800",
+              fillOpacity: 1,
+              map:map_kmeans,
+              center: {lat:{{station.Lat}},lng:{{station.Lon}}},
+              radius: 10000,
+            });
+          {%endfor%}
+
+          {%for station in data['mix-clustering-result']:%}
+            <!--console.log({{station.Lat}})-->
+
+            service_area2 = new google.maps.Circle({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 0,
+              fillColor: "#FF8800",
+              fillOpacity: 0.5,
+              map:map_dbscan,
+              center: {lat:{{station.Lat}},lng:{{station.Lon}}},
+              radius: 10000,
+            });
+          {%endfor%}
+
+          case_loc_collect = [];
+          {%for class in data['all_case_loc']:%}
+            {%for loc in data['all_case_loc'][class]:%}
+            case_loc_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+            {%endfor%}
+          {%endfor%}
+
+          class_1_collect = [];
+          {%for loc in data['all_case_loc'][1]:%}
+            class_1_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          class_2_collect = [];
+          {%for loc in data['all_case_loc'][2]:%}
+            class_2_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          class_3_collect = [];
+          {%for loc in data['all_case_loc'][3]:%}
+            class_3_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          class_4_collect = [];
+          {%for loc in data['all_case_loc'][4]:%}
+            class_4_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          class_5_collect = [];
+          {%for loc in data['all_case_loc'][5]:%}
+            class_5_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          class_6_collect = [];
+          {%for loc in data['all_case_loc'][6]:%}
+            class_6_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+          outlier_collect = [];
+          {% for loc in data['outliers']:%}
+            outlier_collect.push(new google.maps.LatLng({{loc.Lat}}, {{loc.Lon}}))
+          {%endfor%}
+
+
+
+          <!--heatmap = new google.maps.visualization.HeatmapLayer({-->
+              <!--data: case_loc_collect,-->
+              <!--map: map,-->
+          <!--});-->
+
+          <!--heatmap.set("radius", 10);-->
+          <!--heatmap.set("opacity", 1);-->
+          <!--heatmap.set("gradient",gradient);-->
+
+          heatmap_class_1 = new google.maps.visualization.HeatmapLayer({
+              data: class_1_collect,
+              map: map,
+          });
+          heatmap_class_1_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_1_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_1_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_1_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_1.set("radius", 5);
+          heatmap_class_1.set("opacity", 0);
+          heatmap_class_1.set("gradient",gradient);
+
+          heatmap_class_1_kmeans.set("radius", 5);
+          heatmap_class_1_kmeans.set("opacity", 0);
+          heatmap_class_1_kmeans.set("gradient",gradient);
+
+          heatmap_class_1_dbscan.set("radius", 5);
+          heatmap_class_1_dbscan.set("opacity", 0);
+          heatmap_class_1_dbscan.set("gradient",gradient);
+
+          heatmap_class_2 = new google.maps.visualization.HeatmapLayer({
+              data: class_2_collect,
+              map: map,
+          });
+          heatmap_class_2_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_2_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_2_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_2_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_2.set("radius", 5);
+          heatmap_class_2.set("opacity", 0);
+          heatmap_class_2.set("gradient",gradient);
+
+          heatmap_class_2_kmeans.set("radius", 5);
+          heatmap_class_2_kmeans.set("opacity", 0);
+          heatmap_class_2_kmeans.set("gradient",gradient);
+
+          heatmap_class_2_dbscan.set("radius", 5);
+          heatmap_class_2_dbscan.set("opacity", 0);
+          heatmap_class_2_dbscan.set("gradient",gradient);
+
+          heatmap_class_3 = new google.maps.visualization.HeatmapLayer({
+              data: class_3_collect,
+              map: map,
+          });
+          heatmap_class_3_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_3_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_3_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_3_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_3.set("radius", 5);
+          heatmap_class_3.set("opacity", 0);
+          heatmap_class_3.set("gradient",gradient);
+
+          heatmap_class_3_kmeans.set("radius", 5);
+          heatmap_class_3_kmeans.set("opacity", 0);
+          heatmap_class_3_kmeans.set("gradient",gradient);
+
+          heatmap_class_3_dbscan.set("radius", 5);
+          heatmap_class_3_dbscan.set("opacity", 0);
+          heatmap_class_3_dbscan.set("gradient",gradient);
+
+          heatmap_class_4 = new google.maps.visualization.HeatmapLayer({
+              data: class_4_collect,
+              map: map,
+          });
+          heatmap_class_4_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_4_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_4_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_4_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_4.set("radius", 5);
+          heatmap_class_4.set("opacity", 0);
+          heatmap_class_4.set("gradient",gradient);
+
+          heatmap_class_4_kmeans.set("radius", 5);
+          heatmap_class_4_kmeans.set("opacity", 0);
+          heatmap_class_4_kmeans.set("gradient",gradient);
+
+          heatmap_class_4_dbscan.set("radius", 5);
+          heatmap_class_4_dbscan.set("opacity", 0);
+          heatmap_class_4_dbscan.set("gradient",gradient);
+
+          heatmap_class_5 = new google.maps.visualization.HeatmapLayer({
+              data: class_5_collect,
+              map: map,
+          });
+          heatmap_class_5_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_5_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_5_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_5_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_5.set("radius", 5);
+          heatmap_class_5.set("opacity", 0);
+          heatmap_class_5.set("gradient",gradient);
+
+          heatmap_class_5_kmeans.set("radius", 5);
+          heatmap_class_5_kmeans.set("opacity", 0);
+          heatmap_class_5_kmeans.set("gradient",gradient);
+
+          heatmap_class_5_dbscan.set("radius", 5);
+          heatmap_class_5_dbscan.set("opacity", 0);
+          heatmap_class_5_dbscan.set("gradient",gradient);
+
+          heatmap_class_6 = new google.maps.visualization.HeatmapLayer({
+              data: class_6_collect,
+              map: map,
+          });
+          heatmap_class_6_kmeans = new google.maps.visualization.HeatmapLayer({
+              data: class_6_collect,
+              map: map_kmeans,
+          });
+          heatmap_class_6_dbscan = new google.maps.visualization.HeatmapLayer({
+              data: class_6_collect,
+              map: map_dbscan,
+          });
+          heatmap_class_6.set("radius", 5);
+          heatmap_class_6.set("opacity", 0);
+          heatmap_class_6.set("gradient",gradient);
+
+          heatmap_class_6_kmeans.set("radius", 5);
+          heatmap_class_6_kmeans.set("opacity", 0);
+          heatmap_class_6_kmeans.set("gradient",gradient);
+
+          heatmap_class_6_dbscan.set("radius", 5);
+          heatmap_class_6_dbscan.set("opacity", 0);
+          heatmap_class_6_dbscan.set("gradient",gradient);
+
+          outlier_layer = new google.maps.visualization.HeatmapLayer({
+              data: outlier_collect,
+              map: map_dbscan,
+          });
+
+          outlier_layer.set("radius", 5);
+          outlier_layer.set("opacity", 0);
+          outlier_layer.set("gradient",gradient);
+
         }
+
+        window.onload = function(){
+          var response_time_pie = new CanvasJS.Chart("response_time_pie",
+            {
+                title:{
+                    text: "Overall Response Time Distribution"
+                },
+                legend: {
+                    maxWidth: 350,
+                    itemWidth: 120
+                },
+                data: [
+                {
+                    type: "pie",
+                    showInLegend: true,
+                    legendText: "{indexLabel}",
+                    dataPoints: [
+                      {%for class in data['all_case_loc']:%}
+                        { y: {{(data['response_class_count'][class])}}, indexLabel: "{{data['response_time_class'][class]}}" },
+                      {%endfor%}
+                    ]
+                }
+                ]
+            });
+            response_time_pie.render();
+        }
+
+        function visualize(class_){
+            if(class_.get("opacity")==0){
+                class_.set("opacity", 1);
+            }else{
+                class_.set("opacity", 0);
+            }
+        }
+
+        function visualize_kmeans(class_){
+            if(class_.get("opacity")==0){
+                class_.set("opacity", 1);
+            }else{
+                class_.set("opacity", 0);
+            }
+        }
+
+        function visualize_dbscan(class_){
+            if(class_.get("opacity")==0){
+                class_.set("opacity", 1);
+            }else{
+                class_.set("opacity", 0);
+            }
+        }
+
+        function hide_all(){
+            heatmap_class_1.set("opacity", 0);
+            heatmap_class_2.set("opacity", 0);
+            heatmap_class_3.set("opacity", 0);
+            heatmap_class_4.set("opacity", 0);
+            heatmap_class_5.set("opacity", 0);
+            heatmap_class_6.set("opacity", 0);
+        }
+
+        function hide_all_kmeans(){
+            heatmap_class_1_kmeans.set("opacity", 0);
+            heatmap_class_2_kmeans.set("opacity", 0);
+            heatmap_class_3_kmeans.set("opacity", 0);
+            heatmap_class_4_kmeans.set("opacity", 0);
+            heatmap_class_5_kmeans.set("opacity", 0);
+            heatmap_class_6_kmeans.set("opacity", 0);
+        }
+
+        function hide_all_dbscan(){
+            heatmap_class_1_dbscan.set("opacity", 0);
+            heatmap_class_2_dbscan.set("opacity", 0);
+            heatmap_class_3_dbscan.set("opacity", 0);
+            heatmap_class_4_dbscan.set("opacity", 0);
+            heatmap_class_5_dbscan.set("opacity", 0);
+            heatmap_class_6_dbscan.set("opacity", 0);
+        }
+
     </script>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpf-U3kydWGURsa81v2Bo7CGeLqOVguAI&callback=initMap">
-    </script>
+    <!--<script defer-->
+    <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpf-U3kydWGURsa81v2Bo7CGeLqOVguAI&callback=initMap">-->
+    <!--</script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpf-U3kydWGURsa81v2Bo7CGeLqOVguAI&libraries=visualization&callback=initMap"></script>
   </body>
 </html>

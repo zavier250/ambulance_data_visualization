@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b5a68c9-23d0-42aa-ac8d-fffb6e72a7ec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/station_deployment_analysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/clustering_result.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/k-means.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/low-priority-geo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/priority-analysis.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_filter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_1.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#ib_16384_1.dblwr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_1.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_1.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_10.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_10.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_2.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_2.ibt" afterDir="false" />
@@ -20,16 +24,43 @@
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/#innodb_temp/temp_9.ibt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/alembic_version.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/earf.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000018" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.000018" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/final_ass_count.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/final_ass_count.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/response_time_count.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ambulance_data/response_time_count.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000003" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000004" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000005" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000006" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000007" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000008" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000009" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000010" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000011" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000012" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000013" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000014" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000015" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000016" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000017" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000018" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000019" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000020" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.000021" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/binlog.index" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/binlog.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql-data/ib_logfile1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ib_logfile1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibdata1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/ibtmp1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/mysql.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql-data/undo_002" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/g-map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/g-map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,57 +70,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="187" column="62" selection-start-line="187" selection-start-column="62" selection-end-line="187" selection-end-column="62" />
+            <state relative-caret-position="-4070">
+              <caret line="155" column="48" lean-forward="true" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/station_deployment_analysis.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="276" column="29" lean-forward="true" selection-start-line="276" selection-start-column="29" selection-end-line="276" selection-end-column="29" />
               <folding>
-                <element signature="e#17#66#0" expanded="true" />
+                <element signature="e#17#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/road-type-map.html">
+        <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="141" selection-start-line="35" selection-start-column="141" selection-end-line="35" selection-end-column="141" />
+            <state relative-caret-position="681">
+              <caret line="504" column="82" selection-start-line="504" selection-start-column="82" selection-end-line="504" selection-end-column="82" />
+              <folding>
+                <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#main#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ambulance_station.csv">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/g-map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analysis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3689">
-              <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+            <state relative-caret-position="985">
+              <caret line="272" column="30" selection-start-line="272" selection-start-column="30" selection-end-line="272" selection-end-column="30" />
               <folding>
-                <element signature="e#17#28#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,25 +118,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="336" column="7" selection-start-line="336" selection-start-column="7" selection-end-line="336" selection-end-column="7" />
+            <state relative-caret-position="17">
+              <caret line="110" column="21" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
               <folding>
                 <element signature="e#17#36#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/earf_ampds.csv">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/daily-case-map.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="43" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -131,6 +137,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>geo_distance_cal</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -139,21 +150,28 @@
       <list>
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/docker/docker-compose.yml" />
-        <option value="$PROJECT_DIR$/templates/dashboard2.html" />
         <option value="$PROJECT_DIR$/templates/cluster-map.html" />
-        <option value="$PROJECT_DIR$/templates/g-map.html" />
         <option value="$PROJECT_DIR$/templates/daily-case-map.html" />
         <option value="$PROJECT_DIR$/templates/road-type-map.html" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/analysis.py" />
         <option value="$PROJECT_DIR$/data_filter.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/templates/low-priority-geo.html" />
+        <option value="$PROJECT_DIR$/templates/clustering_result.html" />
+        <option value="$PROJECT_DIR$/templates/k-means.html" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/dashboard2.html" />
+        <option value="$PROJECT_DIR$/templates/priority-analysis.html" />
+        <option value="$PROJECT_DIR$/templates/g-map.html" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/analysis.py" />
+        <option value="$PROJECT_DIR$/station_deployment_analysis.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="822" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -173,22 +191,6 @@
               <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="jupyter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ambulance_data_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-              <item name="versions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ambulance_data_dashboard" type="b2602c69:ProjectViewProjectNode" />
@@ -286,11 +288,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="station_deployment_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ambulance_data_dashboard" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/station_deployment_analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
-        <item itemvalue="Python.data_filter" />
+        <item itemvalue="Python.station_deployment_analysis" />
         <item itemvalue="Python.analysis" />
+        <item itemvalue="Python.data_filter" />
       </list>
     </recent_temporary>
   </component>
@@ -308,23 +332,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="822" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16490486" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2085976" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4989429" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6906272" visible="true" weight="0.34457833" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4982382" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.68498945" weight="0.2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4982382" weight="0.25301206" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8062016" weight="0.41807228" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.8047921" weight="0.061643835" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3093728" side_tool="true" visible="true" weight="0.34457833" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.31501058" side_tool="true" weight="0.96385545" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -371,16 +395,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="1283" selection-start-line="1283" selection-end-line="1283" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -395,13 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2353">
-          <caret line="680" column="29" selection-start-line="680" selection-start-column="29" selection-end-line="680" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/migrations/versions/157d3c6078a0_.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-901" />
@@ -413,13 +420,6 @@
         <state relative-caret-position="-41" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cluster-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/road-type-map.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -427,50 +427,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/ambulance_station.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/g-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3689">
-          <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
-          <folding>
-            <element signature="e#17#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/daily-case-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="43" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/earf.csv">
       <provider selected="true" editor-type-id="LargeFileEditor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="336" column="7" selection-start-line="336" selection-start-column="7" selection-end-line="336" selection-end-column="7" />
-          <folding>
-            <element signature="e#17#36#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/data/earf_cleaned2.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="1629">
+          <caret line="104" selection-start-line="104" selection-end-line="105" />
         </state>
       </provider>
     </entry>
@@ -478,12 +441,145 @@
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="LargeFileEditor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cluster-map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="1949" selection-start-line="1949" selection-end-line="1949" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/low-priority-geo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="133" selection-start-line="50" selection-start-column="133" selection-end-line="50" selection-end-column="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/earf_cleaned_v2_2.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="1768">
+          <caret line="104" selection-start-line="104" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ambulance_station.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-787" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/arima-data.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/clustering_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/daily-case-map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/k-means.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/priority-analysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2073">
+          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../INFS7410/proj2/code copy/LTR_dev_fixed.res">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="504" column="82" selection-start-line="504" selection-start-column="82" selection-end-line="504" selection-end-column="82" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#main#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/g-map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="985">
+          <caret line="272" column="30" selection-start-line="272" selection-start-column="30" selection-end-line="272" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="130" column="13" lean-forward="true" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
+          <folding>
+            <element signature="e#17#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="110" column="21" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
+          <folding>
+            <element signature="e#17#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="187" column="62" selection-start-line="187" selection-start-column="62" selection-end-line="187" selection-end-column="62" />
+        <state relative-caret-position="-4070">
+          <caret line="155" column="48" lean-forward="true" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/station_deployment_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="276" column="29" lean-forward="true" selection-start-line="276" selection-start-column="29" selection-end-line="276" selection-end-column="29" />
           <folding>
-            <element signature="e#17#66#0" expanded="true" />
+            <element signature="e#17#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

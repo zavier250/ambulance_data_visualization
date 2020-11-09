@@ -8,6 +8,9 @@ import requests
 import pandas as pd
 import calendar
 import datetime
+from geopy.distance import geodesic
+
+import geopy as gp
 
 from app import *
 from sklearn.linear_model import LinearRegression,Ridge,RidgeCV
@@ -125,30 +128,30 @@ def arima():
             }),ignore_index=True
         )
     df.to_csv('./data/arima-data.csv')
-    # print(df)
-    # over_rate = df.diff(1)
-    # over_rate = over_rate.dropna()
-    # print(over_rate)
-    # # plt.plot(date,df,color='red')
-    # # plt.plot(date,over_rate)
-    # # plt.show()
-    #
-    # # acf = plot_acf(over_rate,lags=20)
-    # # plt.title('acf')
-    # # plt.show()
-    # # q=1
-    #
-    # # pacf = plot_pacf(over_rate, lags=20)
-    # # plt.title('pacf')
-    # # plt.show()
-    # # p=7
-    #
-    # model = ARIMA(over_rate,order=(7,1,1),freq=1)
-    # result = model.fit()
-    #
-    # # predict
-    # pred = result.predict('2016-12-15','2017-02-01',dynamic=True)
-    # print(pred)
+    print(df)
+    over_rate = df.diff(1)
+    over_rate = over_rate.dropna()
+    print(over_rate)
+    plt.plot(date,df,color='red')
+    plt.plot(date,over_rate)
+    plt.show()
+
+    acf = plot_acf(over_rate,lags=20)
+    plt.title('acf')
+    plt.show()
+    q=1
+
+    pacf = plot_pacf(over_rate, lags=20)
+    plt.title('pacf')
+    plt.show()
+    p=7
+
+    model = ARIMA(over_rate,order=(7,1,1),freq=1)
+    result = model.fit()
+
+    # predict
+    pred = result.predict('2016-12-15','2017-02-01',dynamic=True)
+    print(pred)
 
 
 # certain_area_filter
@@ -231,6 +234,78 @@ def get_daily_cases(year):
                     day_filter.add(day)
     return alldaylist
 
+def deceased_plot():
+    D_deceased_case = db.session.query(earf.EARF_Number,earf.Response_Time).filter(and_(earf.Final_Assessment=='deceased',earf.Priority=='D')).all()
+    D_deceased_case = db.session.query(earf.EARF_Number, earf.Response_Time).filter(
+        earf.Priority == 'D').all()
+    earf_num_li = []
+    response_time_li=[]
+    for pair in D_deceased_case:
+        earf_num_li.append(pair.EARF_Number)
+        response_time_li.append(pair.Response_Time)
+    # print(response_time_li)
+    plt.axhline(y=7, c='red')
+    plt.axhline(y=10,c='red')
+    plt.axhline(y=20, c='red')
+    plt.axhline(y=30, c='red')
+    plt.axhline(y=60, c='red')
+    plt.bar(range(len(earf_num_li)),response_time_li)
+    plt.show()
+
+def low_priority_filter(priority):
+    low_priority_cases = db.session.query(earf.EARF_Number, earf.Lat, earf.Lon, earf.Priority, earf.Time_Received,
+                                          earf.Response_Time).filter(
+        and_(earf.Priority == priority, or_(earf.Response_Time_Class == 1, earf.Response_Time_Class == 2))).all()
+    case_collection={}
+    for case in low_priority_cases:
+        case_oc_time = case.Time_Received
+        # case_oc_time_str = str(case_oc_time).split(" ")[0]
+        case_collection[case.EARF_Number]={}
+        case_collection[case.EARF_Number]['self']=case
+        case_collection[case.EARF_Number]['hp_cases']={}
+        # print(case.Lat)
+        # print(type(case_oc_time))
+        one_h_bf = case_oc_time + datetime.timedelta(hours=-1)
+        close_time_hp_cases = db.session.query(earf.EARF_Number,earf.Lat,earf.Lon,earf.Priority,earf.Time_Received,earf.Response_Time).filter(and_(and_(earf.Time_Received>one_h_bf,earf.Time_Received<case_oc_time),or_(earf.Priority=='B',earf.Priority=='D'))).all()
+        for hp_case in close_time_hp_cases:
+            case_collection[case.EARF_Number]['hp_cases'][hp_case.EARF_Number] = hp_case
+        # print(case_collection[case.EARF_Number])
+
+    nearby_hp_case_collection = {}
+    lp_case_count = 0
+    total_count = 0
+    misdispatch = 0
+    misdispatch_set = set()
+
+    for case in case_collection:
+        low_priority_case_coordinate = (case_collection[case]['self'].Lat, case_collection[case]['self'].Lon)
+        lp_case_count += 1
+        # print(low_priority_case_coordinate)
+        nearby_hp_case_collection[case]={}
+        if case_collection[case]['hp_cases']!={}:
+            for hp_case in case_collection[case]['hp_cases']:
+                hp_coordinate = (case_collection[case]['hp_cases'][hp_case].Lat,case_collection[case]['hp_cases'][hp_case].Lon)
+                distance = geo_distance_cal(low_priority_case_coordinate,hp_coordinate)
+                distance = float(str(distance).split(" ")[0])
+                nearby_hp_case_collection[case][hp_case] = distance
+                total_count += 1
+                if distance<=10.0:
+                    misdispatch += 1
+                    misdispatch_set.add(case)
+
+    return nearby_hp_case_collection, lp_case_count, total_count, misdispatch,len(misdispatch_set)
+
+
+
+
+
+
+
+def geo_distance_cal(coordinate_1, coordinate_2):
+    return geodesic(coordinate_1,coordinate_2)
+
+
+
 def main():
     # r1 = requests.get('https://nominatim.openstreetmap.org/search?format=json&q=' + 'Brisbane Road, Booval, Ipswich, Queensland, 4304, Australia', timeout=60)
     # print(r1)
@@ -252,6 +327,10 @@ def main():
     # daily_count_distribution()
     # over_rate_regression()
     arima()
+    # print(geo_distance_cal((-27.4673, 153.158),(-27.4957, 153.06)))
+    # deceased_plot()
+    # print(low_priority_filter('O'))
+    # print(low_priority_filter('A'))
 
 if __name__ == '__main__':
     main()

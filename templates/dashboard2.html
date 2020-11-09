@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-<link href="https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
        <!--Leaflet Map-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -401,7 +401,7 @@
               data: [
               {%for code in data['top_6_code']:%}
               {
-                type: "stackedBar",
+                type: "stackedBar100",
                 legendText: "{{code.Final_Assessment_Code}}",
                 showInLegend: "true",
                 dataPoints: [
@@ -440,6 +440,20 @@
           <!--<a class="nav-link" href="#">Sign out</a>-->
         <!--</li>-->
       <!--</ul>-->
+        <ul>
+            <li>
+                <a href="{{url_for('dashboard')}}">General</a>
+            </li>
+            <li>
+                <a href="{{url_for('priority_analysis')}}">Case Priority</a>
+            </li>
+            <li>
+                <a href="{{url_for('g_map')}}">Ambulance Station Deployment</a>
+            </li>
+            <li>
+                <a href="{{url_for('home')}}">Data Import</a>
+            </li>
+        </ul>
     </nav>
 
 
@@ -487,11 +501,19 @@
                           </thead>
                           <tbody>
                             {%for i in data['whole_final']%}
+                            {%if i.Final_Assessment_Code == "DECEASED"%}
+                                <tr style="background-color: gray;color:aliceblue;">
+                                <td>{{i.Final_Assessment_Code}}</td>
+                                <td>{{i.Final_Assessment}}</td>
+                                <td>{{i.Count}}</td>
+                              </tr>
+                            {%else%}
                               <tr>
                                 <td>{{i.Final_Assessment_Code}}</td>
                                 <td>{{i.Final_Assessment}}</td>
                                 <td>{{i.Count}}</td>
                               </tr>
+                            {%endif%}
                             {%endfor%}
                           </tbody>
                         </table>
@@ -541,37 +563,7 @@
 
           </div>
 
-          <div class="row mt-4 mb-5">
-              <div class="col-md-12">
 
-                  <div class="card">
-                      <div class="card-header">
-                          <h4>Ambulance Station Deployment and Overtime Response Cases Assignment<br>based on K-means clustering algorithm</h4>
-                      </div>
-                      <div class="card-body">
-                          <div id="mapid2"></div>
-                      </div>
-                      <div class="card-footer"></div>
-                    </div>
-              </div>
-
-          </div>
-
-          <div class="row mt-4 mb-5">
-              <div class="col-md-12">
-
-                  <div class="card">
-                      <div class="card-header">
-                          <h4>Ambulance Station Deployment and Overtime Response Cases Assignment<br>based on K-means clustering algorithm</h4>
-                      </div>
-                      <div class="card-body">
-                          <div id="g-map"></div>
-                      </div>
-                      <div class="card-footer"></div>
-                    </div>
-              </div>
-
-          </div>
 
          </div>
 

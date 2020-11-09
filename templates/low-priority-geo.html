@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 800px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <h3>Low Priority Cases Geographical Distribution</h3>
+    <!--The div element for the map -->
+    <div class="row">
+        <div class="col-md-3">
+            <ul>
+                {% for earf_number in data['case_collection'] %}
+                    <li><a href="">{{earf_number}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+
+          // The map, centered at Brisbane (-27.470125, 153.021072)
+          var brisbane = {lat:-27.470125, lng:153.021072};
+          var map = new google.maps.Map(
+              document.getElementById('map'), {zoom: 5, center: brisbane});
+          // The location of ambulance stations
+          <!--{%for case in data['case_collection']:%}-->
+            <!--var loc = {lat:{{data['case_collection'][case]['self'].Lat}},lng:{{data['case_collection'][case]['self'].Lon}}}-->
+          <!--&lt;!&ndash;var uluru = {lat: -25.344, lng: 131.036};&ndash;&gt;-->
+          <!--&lt;!&ndash;// The marker, positioned at Uluru&ndash;&gt;-->
+            <!--var marker = new google.maps.Marker({position: loc, map: map});-->
+          <!--{%endfor%}-->
+          var loc = {lat:{{data['case_collection'][123205106]['self'].Lat}},lng:{{data['case_collection'][123205106]['self'].Lon}}}
+          var marker = new google.maps.Marker({position: loc, map: map});
+          {% for hp_case in data['case_collection'][123205106]['hp_cases'] %}
+            var hp_loc = {lat:{{data['case_collection'][123205106]['hp_cases'][hp_case].Lat}},lng:{{data['case_collection'][123205106]['hp_cases'][hp_case].Lon}}}
+            var marker = new google.maps.Marker({position: hp_loc, map: map, icon:{url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }});
+          {% endfor %}
+        }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpf-U3kydWGURsa81v2Bo7CGeLqOVguAI&callback=initMap">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
